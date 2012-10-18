@@ -16,6 +16,8 @@
  */
 package dagger;
 
+import dagger.harness.AnnotationsProcessed;
+import dagger.harness.ProcessAnnotations;
 import java.util.AbstractList;
 import java.util.Arrays;
 import java.util.List;
@@ -36,6 +38,7 @@ import static org.junit.Assert.assertEquals;
 @SuppressWarnings("unused")
 @RunWith(Enclosed.class)
 public final class InjectionTest {
+  @RunWith(AnnotationsProcessed.class)
   public static class BasicInjection {
     static class TestEntryPoint {
       @Inject Provider<G> gProvider;
@@ -51,6 +54,7 @@ public final class InjectionTest {
       }
     }
 
+    @ProcessAnnotations({ A.class, B.class, C.class, D.class, E.class, F.class, G.class, TestEntryPoint.class, TestModule.class})
     @Test public void test() {
       TestEntryPoint entryPoint = new TestEntryPoint();
       ObjectGraph.get(new TestModule()).inject(entryPoint);
@@ -103,6 +107,7 @@ public final class InjectionTest {
     }
   }
 
+  @RunWith(AnnotationsProcessed.class)
   public static class ProviderInjection {
     static class TestEntryPoint {
       @Inject Provider<A> aProvider;
@@ -112,6 +117,7 @@ public final class InjectionTest {
     static class TestModule {
     }
 
+    @ProcessAnnotations({ A.class, TestEntryPoint.class, TestModule.class})
     @Test public void test() {
       TestEntryPoint entryPoint = new TestEntryPoint();
       ObjectGraph.get(new TestModule()).inject(entryPoint);
@@ -122,6 +128,7 @@ public final class InjectionTest {
     }
   }
 
+  @RunWith(AnnotationsProcessed.class)
   public static class Singletons {
     static class TestEntryPoint {
       @Inject Provider<F> fProvider;
@@ -135,6 +142,7 @@ public final class InjectionTest {
       }
     }
 
+    @ProcessAnnotations({ F.class, I.class, TestEntryPoint.class, TestModule.class})
     @Test public void test() {
       TestEntryPoint entryPoint = new TestEntryPoint();
       ObjectGraph.get(new TestModule()).inject(entryPoint);
@@ -148,6 +156,7 @@ public final class InjectionTest {
     @Inject I() {}
   }
 
+  @RunWith(AnnotationsProcessed.class)
   public static class BindingAnnotations {
     static class TestEntryPoint {
       @Inject A a;
@@ -168,6 +177,7 @@ public final class InjectionTest {
       }
     }
 
+    @ProcessAnnotations({ A.class, TestEntryPoint.class, TestModule.class})
     @Test public void test() {
       TestEntryPoint entryPoint = new TestEntryPoint();
       TestModule module = new TestModule();
@@ -178,6 +188,7 @@ public final class InjectionTest {
     }
   }
 
+  @RunWith(AnnotationsProcessed.class)
   public static class SingletonBindingAnnotationAndProvider {
     static class TestEntryPoint {
       @Inject Provider<L> lProvider;
@@ -195,6 +206,7 @@ public final class InjectionTest {
       }
     }
 
+    @ProcessAnnotations({ A.class, TestEntryPoint.class, TestModule.class})
     @Test public void test() {
       TestEntryPoint entryPoint = new TestEntryPoint();
       TestModule module = new TestModule();
@@ -214,6 +226,7 @@ public final class InjectionTest {
     @Inject Provider<L> lProvider;
   }
 
+  @RunWith(AnnotationsProcessed.class)
   public static class SingletonInGraph {
     static class TestEntryPoint {
       @Inject N n1;
@@ -229,6 +242,7 @@ public final class InjectionTest {
       }
     }
 
+    @ProcessAnnotations({ F.class, N.class, TestEntryPoint.class, TestModule.class})
     @Test public void test() {
       TestEntryPoint entryPoint = new TestEntryPoint();
       ObjectGraph.get(new TestModule()).inject(entryPoint);
@@ -249,6 +263,7 @@ public final class InjectionTest {
     @Inject Provider<F> fProvider;
   }
 
+  @RunWith(AnnotationsProcessed.class)
   public static class NoJitBindingsForAnnotations {
     static class TestEntryPoint {
       @Inject @Named("a") A a;
@@ -265,12 +280,14 @@ public final class InjectionTest {
       graph = ObjectGraph.get(new TestModule());
     }
 
+    @ProcessAnnotations({ A.class, TestEntryPoint.class, TestModule.class})
     @Test(expected = IllegalStateException.class)
     public void test() {
       graph.validate();
     }
   }
 
+  @RunWith(AnnotationsProcessed.class)
   public static class Subclasses {
     static class TestEntryPoint {
       @Inject Q q;
@@ -283,6 +300,7 @@ public final class InjectionTest {
       }
     }
 
+    @ProcessAnnotations({ F.class, Q.class, TestEntryPoint.class, TestModule.class})
     @Test public void test() {
       TestEntryPoint entryPoint = new TestEntryPoint();
       ObjectGraph.get(new TestModule()).inject(entryPoint);
@@ -298,6 +316,7 @@ public final class InjectionTest {
     @Inject Q() {}
   }
 
+  @RunWith(AnnotationsProcessed.class)
   public static class SingletonsAreNotEager {
     static class TestEntryPoint {
       @Inject Provider<A> aProvider;
@@ -317,6 +336,7 @@ public final class InjectionTest {
       }
     }
 
+    @ProcessAnnotations({ A.class, F.class, R.class, S.class, TestEntryPoint.class, TestModule.class})
     @Test public void test() {
       R.injected = false;
       TestEntryPoint entryPoint = new TestEntryPoint();
@@ -353,8 +373,11 @@ public final class InjectionTest {
     public void test() {
       ObjectGraph.get(new TestModule());
     }
+
+    // TODO: javac
   }
 
+  @RunWith(AnnotationsProcessed.class)
   public static class SingletonsInjectedOnlyIntoProviders {
     static class TestEntryPoint {
       @Inject Provider<A> aProvider;
@@ -367,6 +390,7 @@ public final class InjectionTest {
       }
     }
 
+    @ProcessAnnotations({ A.class, TestEntryPoint.class, TestModule.class})
     @Test public void test() {
       TestEntryPoint entryPoint = new TestEntryPoint();
       ObjectGraph.get(new TestModule()).inject(entryPoint);
@@ -374,6 +398,7 @@ public final class InjectionTest {
     }
   }
 
+  @RunWith(AnnotationsProcessed.class)
   public static class ModuleOverrides {
     static class TestEntryPoint {
       @Inject Provider<E> eProvider;
@@ -396,6 +421,7 @@ public final class InjectionTest {
       }
     }
 
+    @ProcessAnnotations({ E.class, F.class, TestEntryPoint.class, BaseModule.class, OverridesModule.class })
     @Test public void test() {
       TestEntryPoint entryPoint = new TestEntryPoint();
       ObjectGraph.get(new BaseModule(), new OverridesModule()).inject(entryPoint);
@@ -424,6 +450,8 @@ public final class InjectionTest {
     public void test() {
       graph.validate();
     }
+
+    // TODO: javac
   }
 
   public static class NoProvideBindingsForAbstractClasses {
@@ -445,6 +473,8 @@ public final class InjectionTest {
     public void test() {
       graph.validate();
     }
+
+    // TODO: javac
   }
 
   static class ExtendsParameterizedType extends AbstractList<Integer> {
@@ -461,6 +491,7 @@ public final class InjectionTest {
    * We've had bugs where we look for the wrong keys when a class extends a
    * parameterized class. Explicitly test that we can inject such classes.
    */
+  @RunWith(AnnotationsProcessed.class)
   public static class ExtendsParameterizedTypeTest {
     static class TestEntryPoint {
       @Inject ExtendsParameterizedType extendsParameterizedType;
@@ -473,6 +504,7 @@ public final class InjectionTest {
       }
     }
 
+    @ProcessAnnotations({ ExtendsParameterizedType.class, TestEntryPoint.class, TestModule.class})
     @Test public void test() {
       TestEntryPoint entryPoint = new TestEntryPoint();
       ObjectGraph.get(new TestModule()).inject(entryPoint);
@@ -480,6 +512,7 @@ public final class InjectionTest {
     }
   }
 
+  @RunWith(AnnotationsProcessed.class)
   public static class InjectParameterizedType {
     static class TestEntryPoint {
       @Inject List<String> listOfStrings;
@@ -492,6 +525,7 @@ public final class InjectionTest {
       }
     }
 
+    @ProcessAnnotations({ TestEntryPoint.class, TestModule.class})
     @Test public void test() {
       TestEntryPoint entryPoint = new TestEntryPoint();
       ObjectGraph.get(new TestModule()).inject(entryPoint);
@@ -515,8 +549,11 @@ public final class InjectionTest {
     public void test() {
       ObjectGraph.get(new TestModule());
     }
+
+    // TODO: javac
   }
 
+  @RunWith(AnnotationsProcessed.class)
   public static class NoConstructorInjectionsForClassesWithTypeParameters {
     static class Parameterized<T> {
       @Inject String string;
@@ -539,22 +576,26 @@ public final class InjectionTest {
       graph = ObjectGraph.get(new TestModule());
     }
 
+    @ProcessAnnotations({ Parameterized.class, TestEntryPoint.class, TestModule.class})
     @Test(expected = IllegalStateException.class)
     public void test() {
       graph.validate();
     }
   }
 
+  @RunWith(AnnotationsProcessed.class)
   public static class ModuleWithNoProvidesMethods {
     @Module
     static class TestModule {
     }
 
+    @ProcessAnnotations({ TestModule.class})
     @Test public void test() {
       ObjectGraph.get(new TestModule());
     }
   }
 
+  @RunWith(AnnotationsProcessed.class)
   public static class GetInstance {
 
     @Module(entryPoints = Integer.class)
@@ -567,6 +608,7 @@ public final class InjectionTest {
       }
     }
 
+    @ProcessAnnotations({ TestModule.class})
     @Test public void test() {
       ObjectGraph graph = ObjectGraph.get(new TestModule());
       assertEquals(0, (int) graph.getInstance(Integer.class));
@@ -574,6 +616,7 @@ public final class InjectionTest {
     }
   }
 
+  @RunWith(AnnotationsProcessed.class)
   public static class GetInstanceRequiresEntryPoint {
     @Module
     static class TestModule {
@@ -588,12 +631,14 @@ public final class InjectionTest {
       graph = ObjectGraph.get(new TestModule());
     }
 
+    @ProcessAnnotations({ TestModule.class})
     @Test(expected = IllegalArgumentException.class)
     public void test() {
       graph.getInstance(Integer.class);
     }
   }
 
+  @RunWith(AnnotationsProcessed.class)
   public static class GetInstanceOfPrimitive {
     @Module(entryPoints = int.class)
     static class TestModule {
@@ -602,12 +647,14 @@ public final class InjectionTest {
       }
     }
 
+    @ProcessAnnotations({ TestModule.class})
     @Test public void test() {
       ObjectGraph graph = ObjectGraph.get(new TestModule());
       assertEquals(1, (int) graph.getInstance(int.class));
     }
   }
 
+  @RunWith(AnnotationsProcessed.class)
   public static class GetInstanceOfArray {
     @Module(entryPoints = int[].class)
     static class TestModule {
@@ -616,12 +663,14 @@ public final class InjectionTest {
       }
     }
 
+    @ProcessAnnotations({ TestModule.class})
     @Test public void test() {
       ObjectGraph graph = ObjectGraph.get(new TestModule());
       assertEquals("[1, 2, 3]", Arrays.toString(graph.getInstance(int[].class)));
     }
   }
 
+  @RunWith(AnnotationsProcessed.class)
   public static class GetInstanceAndInjectMembersUseDifferentKeys {
     static class BoundTwoWays {
       @Inject String s;
@@ -647,11 +696,13 @@ public final class InjectionTest {
       graph = ObjectGraph.get(new TestModule());
     }
 
+    @ProcessAnnotations({ BoundTwoWays.class, TestModule.class})
     @Test public void testGetInstance() {
       BoundTwoWays provided = graph.getInstance(BoundTwoWays.class);
       assertEquals("Pepsi", provided.s);
     }
 
+    @ProcessAnnotations({ BoundTwoWays.class, TestModule.class})
     @Test public void testInjectMembers() {
       BoundTwoWays membersInjected = new BoundTwoWays();
       graph.inject(membersInjected);
@@ -662,16 +713,19 @@ public final class InjectionTest {
   static class NoInjections {
   }
 
+  @RunWith(AnnotationsProcessed.class)
   public static class EntryPointNeedsNoInjectAnnotation {
     @Module(entryPoints = NoInjections.class)
     static class TestModule {
     }
 
+    @ProcessAnnotations({ TestModule.class})
     @Test public void test() {
       ObjectGraph.get(new TestModule()).validate();
     }
   }
 
+  @RunWith(AnnotationsProcessed.class)
   public static class NonEntryPointNeedsInjectAnnotation {
     @Module
     static class TestModule {
@@ -682,10 +736,11 @@ public final class InjectionTest {
 
     ObjectGraph graph;
 
-    @Before public void steup() {
+    @Before public void setup() {
       graph = ObjectGraph.get(new TestModule());
     }
 
+    @ProcessAnnotations({ TestModule.class})
     @Test(expected = IllegalStateException.class)
     public void test() {
       graph.validate();
