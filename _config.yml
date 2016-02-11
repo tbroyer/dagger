@@ -1,5 +1,5 @@
+baseurl: "/dagger"
 auto: true
-url: "http://google.github.io/dagger/"
 markdown: kramdown
 dagger:
   groupId: com.google.dagger
