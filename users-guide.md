@@ -533,9 +533,9 @@ limitations under the License.
 [Annotation Processor]: http://docs.oracle.com/javase/6/docs/api/javax/annotation/processing/package-summary.html
 [Builder Pattern]: http://en.wikipedia.org/wiki/Builder_pattern
 [CoffeeMaker Example]: https://github.com/google/dagger/tree/master/examples/simple/src/main/java/coffee
-[Component]: http://google.github.io/dagger/api/latest/dagger/Component.html
-[Component#provision-methods]: http://google.github.io/dagger/api/latest/dagger/Component.html#provision-methods
-[Component#dependencies]: http://google.github.io/dagger/api/latest/dagger/Component.html#dependencies()
+[Component]: api/latest/dagger/Component.html
+[Component#provision-methods]: api/latest/dagger/Component.html#provision-methods
+[Component#dependencies]: api/latest/dagger/Component.html#dependencies()
 [Dagger Talk Slides]: https://docs.google.com/presentation/d/1fby5VeGU9CN8zjw4lAb2QPPsKRxx6mSwCe9q7ECNSJQ/pub?start=false&loop=false&delayms=3000
 [DI]: http://en.wikipedia.org/wiki/Dependency_injection
 [Documented]: http://docs.oracle.com/javase/7/docs/api/java/lang/annotation/Documented.html
@@ -544,16 +544,16 @@ limitations under the License.
 [JSR 330]: https://jcp.org/en/jsr/detail?id=330
 [`javax.inject`]: http://docs.oracle.com/javaee/7/api/javax/inject/package-summary.html
 [`javax.inject.Inject`]: http://docs.oracle.com/javaee/7/api/javax/inject/Inject.html
-[Lazy]: http://google.github.io/dagger/api/latest/dagger/Lazy.html
-[Module]: http://google.github.io/dagger/api/latest/dagger/Module.html
+[Lazy]: api/latest/dagger/Lazy.html
+[Module]: api/latest/dagger/Module.html
 [Named]: http://docs.oracle.com/javaee/7/api/javax/inject/Named.html
 [Provider]: http://docs.oracle.com/javaee/7/api/javax/inject/Provider.html
-[Provides]: http://google.github.io/dagger/api/latest/dagger/Provides.html
-[`@Reusable`]: http://google.github.io/dagger/api/latest/dagger/Reusable.html
+[Provides]: api/latest/dagger/Provides.html
+[`@Reusable`]: api/latest/dagger/Reusable.html
 [Qualifier]: http://docs.oracle.com/javaee/7/api/javax/inject/Qualifier.html
 [Scope]: http://docs.oracle.com/javaee/7/api/javax/inject/Scope.html
 [Singleton]: http://docs.oracle.com/javaee/7/api/javax/inject/Singleton.html
-[Subcomponent]: http://google.github.io/dagger/api/latest/dagger/Subcomponent.html
-[Subcomponent.Builder]: http://google.github.io/dagger/api/latest/dagger/Subcomponent.Builder.html
+[Subcomponent]: api/latest/dagger/Subcomponent.html
+[Subcomponent.Builder]: api/latest/dagger/Subcomponent.Builder.html
 [`WeakReference`]: https://docs.oracle.com/javase/7/docs/api/java/lang/ref/WeakReference.html
 

@@ -450,10 +450,10 @@ class ChildModule {
 <!-- References -->
 
 [`@AutoAnnotation`]: https://github.com/google/auto/blob/master/value/src/main/java/com/google/auto/value/AutoAnnotation.java
-[`dagger.mapkeys`]: http://google.github.io/dagger/api/latest/dagger/mapkeys/package-summary.html
-[`@ElementsIntoSet`]: http://google.github.io/dagger/api/latest/dagger/multibindings/ElementsIntoSet.html
-[`@IntoMap`]: http://google.github.io/dagger/api/latest/dagger/multibindings/IntoMap.html
-[`@IntoSet`]: http://google.github.io/dagger/api/latest/dagger/multibindings/IntoSet.html
-[`@MapKey`]: http://google.github.io/dagger/api/latest/dagger/MapKey.html
-[`@Multibinds`]: http://google.github.io/dagger/api/latest/dagger/multibindings/Multibinds.html
+[`dagger.mapkeys`]: api/latest/dagger/mapkeys/package-summary.html
+[`@ElementsIntoSet`]: api/latest/dagger/multibindings/ElementsIntoSet.html
+[`@IntoMap`]: api/latest/dagger/multibindings/IntoMap.html
+[`@IntoSet`]: api/latest/dagger/multibindings/IntoSet.html
+[`@MapKey`]: api/latest/dagger/MapKey.html
+[`@Multibinds`]: api/latest/dagger/multibindings/Multibinds.html
 
