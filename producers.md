@@ -152,7 +152,7 @@ graphs.
 ## Multibindings
 
 Several bindings of the same type can be collected into a set or map, just like
-in [ordinary Dagger](multibindings.md). For example:
+in [ordinary Dagger](multibindings). For example:
 
 ```java
 @ProducerModule
@@ -200,8 +200,8 @@ Note that here, `dispatch()` is requesting map values of the type
 requested will be executed.
 
 Also note that `DispatchPath` is a [simple map key]
-(multibindings.md#simple-map-keys), but that [complex map keys]
-(multibindings.md#complex-map-keys) are supported as well.
+(multibindings#simple-map-keys), but that [complex map keys]
+(multibindings#complex-map-keys) are supported as well.
 
 ## Scoping
 

@@ -279,7 +279,7 @@ some conflicting bindings.
 
 ### Extending multibindings
 
-Like other bindings, [multibindings](multibindings.md) in a parent component are
+Like other bindings, [multibindings](multibindings) in a parent component are
 visible to bindings in subcomponents. But subcomponents can also add
 multibindings to maps and sets bound in their parent. Any such additional
 contributions are visible only to bindings within the subcomponent or its

@@ -96,7 +96,7 @@ But there are limitations to this approach:
         they are not used.
 
     *   Similarly, the overriding module cannot add bindings to the graph,
-        including new [multibinding](multibindings.md)
+        including new [multibinding](multibindings)
         contributions (although you can still override a `SET_VALUES` method to
         return a different set). Any new `@Provides` methods in the subclass are
         silently ignored by Dagger. Practically, this means that your fakes
